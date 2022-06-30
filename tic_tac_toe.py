@@ -65,5 +65,4 @@ def push(num):
                 message("You WIN")
             elif win('0'):
                 message("You LOSE")
-
 mainloop()
