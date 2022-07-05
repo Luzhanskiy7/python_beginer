@@ -6,6 +6,7 @@ tk = Tk()
 tk.title('X_vs_0')
 tk.geometry('377x367')
 tk.resizable(False, False)
+tk.config(cursor="target")
 
 def start():
     global game_field
@@ -52,12 +53,12 @@ def push(num):
     for j in range(9):
         if j == num:
             game_field[num] = 'X'
-            button[num].config(text='X', bg='yellow', fg='black', state='disabled')
+            button[num].config(text='X', bg='yellow', fg='black', cursor='pirate', state='disabled')
             game_remains.remove(num)
             if len(game_remains) > 0:
                 cpu = random.choice(game_remains)
                 game_field[cpu] = '0'
-                button[cpu].config(text='0', bg='green', fg='black', state='disabled')
+                button[cpu].config(text='0', bg='green', fg='black', cursor='pirate', state='disabled')
                 game_remains.remove(cpu)
             else:
                message("Draw")
