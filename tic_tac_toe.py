@@ -3,49 +3,29 @@ from tkinter import*
 from tkinter import messagebox as mbox
 
 tk = Tk()
-count_you = 0
-count_bot = 0
-
 tk.title('X_vs_0')
-tk.geometry('377x387')
+tk.geometry('377x367')
 tk.resizable(False, False)
-tk.config(cursor="target", bg='black')
-def visual():
-    global count_bot
-    global count_you
-    you_text = Label(tk, text='You:', font='Arial 18', fg='green', bg='black')
-    bot_text = Label(tk, text='Bot:', font='Arial 18', fg='yellow', bg='black')
-    you_score = Label(tk, text=count_you, font='Arial 18', fg='green', bg='black')
-    bot_score = Label(tk, text=count_bot, font='Arial 18', fg='yellow', bg='black')
-    you_text.place(x=80, y=357)
-    bot_text.place(x=200, y=357)
-    you_score.place(x=140, y=357)
-    bot_score.place(x=250, y=357)
-
-
-
-visual()
-
+tk.config(cursor="target")
+MAX_BUTTON = 9
 def start():
     global game_field
     global game_remains
     global button
-    game_field = [None] * 9
+    game_field = [None] * MAX_BUTTON
     game_remains = list(range(9))
     button = [Button(width=5, height=2, font=('Arial', 28, 'bold'), bg='black',
-                  command=lambda x=i: push(x)) for i in range(9)]
+                  command=lambda x=i: push(x)) for i in range(MAX_BUTTON)]
     row = 0
     col = 0
-    for i in range(9):
+    for i in range(MAX_BUTTON):
         button[i].grid(row=row, column=col)
         row += 1
         if row == 3:
             col += 1
             row = 0
 
-
 start()
-
 
 def win(n):
     global game_field
@@ -60,8 +40,8 @@ def win(n):
         return True
 
 def message(choice):
-    r = mbox.askquestion(choice, "Repeat?")
-    if r == 'no':
+    ask_question = mbox.askquestion(choice, "Repeat?")
+    if ask_question == 'no':
         exit()
     else:
         start()
@@ -70,13 +50,7 @@ def push(num):
     global game_field
     global game_remains
     global button
-    global count_you
-    global count_bot
-
-
-    for j in range(9):
-        count_you = 0
-        count_bot = 0
+    for j in range(MAX_BUTTON):
         if j == num:
             game_field[num] = 'X'
             button[num].config(text='X', bg='yellow', fg='black', cursor='pirate', state='disabled')
@@ -90,13 +64,7 @@ def push(num):
                message("Draw")
             if win('X'):
                 message("You WIN")
-                count_you += 1
-                print(count_you)
             elif win('0'):
                 message("You LOSE")
-                count_bot += 1
-                print(count_bot)
-visual()
-
 
 mainloop()
