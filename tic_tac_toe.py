@@ -6,18 +6,19 @@ tk = Tk()
 tk.title('X_vs_0')
 tk.geometry('377x367')
 tk.resizable(False, False)
-
+tk.config(cursor="target")
+MAX_BUTTON = 9
 def start():
     global game_field
     global game_remains
     global button
-    game_field = [None] * 9
+    game_field = [None] * MAX_BUTTON
     game_remains = list(range(9))
     button = [Button(width=5, height=2, font=('Arial', 28, 'bold'), bg='black',
-                  command=lambda x=i: push(x)) for i in range(9)]
+                  command=lambda x=i: push(x)) for i in range(MAX_BUTTON)]
     row = 0
     col = 0
-    for i in range(9):
+    for i in range(MAX_BUTTON):
         button[i].grid(row=row, column=col)
         row += 1
         if row == 3:
@@ -39,8 +40,8 @@ def win(n):
         return True
 
 def message(choice):
-    r = mbox.askquestion(choice, "Repeat?")
-    if r == 'no':
+    ask_question = mbox.askquestion(choice, "Repeat?")
+    if ask_question == 'no':
         exit()
     else:
         start()
@@ -49,15 +50,15 @@ def push(num):
     global game_field
     global game_remains
     global button
-    for j in range(9):
+    for j in range(MAX_BUTTON):
         if j == num:
             game_field[num] = 'X'
-            button[num].config(text='X', bg='yellow', fg='black', state='disabled')
+            button[num].config(text='X', bg='yellow', fg='black', cursor='pirate', state='disabled')
             game_remains.remove(num)
             if len(game_remains) > 0:
                 cpu = random.choice(game_remains)
                 game_field[cpu] = '0'
-                button[cpu].config(text='0', bg='green', fg='black', state='disabled')
+                button[cpu].config(text='0', bg='green', fg='black', cursor='pirate', state='disabled')
                 game_remains.remove(cpu)
             else:
                message("Draw")
