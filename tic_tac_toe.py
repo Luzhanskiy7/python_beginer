@@ -4,14 +4,30 @@ from tkinter import messagebox as mbox
 
 tk = Tk()
 tk.title('X_vs_0')
-tk.geometry('377x367')
+tk.geometry('377x398')
 tk.resizable(False, False)
-tk.config(cursor="target")
+tk.config(cursor="target", bg='black')
 MAX_BUTTON = 9
+count_x = 0
+count_o = 0
+
+def visual_score():
+    you_text = Label(tk, text='You:', font='Arial 18', fg='green', bg='black')
+    bot_text = Label(tk, text='Bot:', font='Arial 18', fg='yellow', bg='black')
+    you_score = Label(tk, text=count_x, font='Arial 18', fg='green', bg='black')
+    bot_score = Label(tk, text=count_o, font='Arial 18', fg='yellow', bg='black')
+    you_text.place(x=80, y=365)
+    bot_text.place(x=200, y=365)
+    you_score.place(x=135, y=365)
+    bot_score.place(x=250, y=365)
+
 def start():
     global game_field
     global game_remains
     global button
+    global count_x
+    global count_o
+
     game_field = [None] * MAX_BUTTON
     game_remains = list(range(9))
     button = [Button(width=5, height=2, font=('Arial', 28, 'bold'), bg='black',
@@ -26,6 +42,7 @@ def start():
             row = 0
 
 start()
+visual_score()
 
 def win(n):
     global game_field
@@ -81,6 +98,8 @@ def push(num):
     global game_field
     global game_remains
     global button
+    global count_x
+    global count_o
     for j in range(MAX_BUTTON):
         if j == num:
             game_field[num] = 'X'
@@ -94,8 +113,11 @@ def push(num):
             else:
                message("Draw")
             if win('X'):
+                count_x += 1
                 message("You WIN")
             elif win('0'):
+                count_o += 1
                 message("You LOSE")
+    visual_score()
 
 mainloop()
