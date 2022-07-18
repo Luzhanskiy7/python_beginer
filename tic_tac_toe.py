@@ -29,14 +29,45 @@ start()
 
 def win(n):
     global game_field
-    if (game_field[0] == n and game_field[3] == n and game_field[6] == n) or\
-        (game_field[0] == n and game_field[1] == n and game_field[2] == n) or\
-        (game_field[3] == n and game_field[4] == n and game_field[5] == n) or\
-        (game_field[6] == n and game_field[7] == n and game_field[8] == n) or\
-        (game_field[1] == n and game_field[4] == n and game_field[7] == n) or\
-        (game_field[2] == n and game_field[5] == n and game_field[8] == n) or\
-        (game_field[0] == n and game_field[4] == n and game_field[8] == n) or\
-        (game_field[2] == n and game_field[4] == n and game_field[6] == n):
+    if (game_field[0] == n and game_field[3] == n and game_field[6] == n):
+        button[0].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        button[3].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        button[6].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        return True
+    elif (game_field[0] == n and game_field[1] == n and game_field[2] == n):
+        button[0].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        button[1].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        button[2].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        return True
+    elif (game_field[3] == n and game_field[4] == n and game_field[5] == n):
+        button[3].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        button[4].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        button[5].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        return True
+    elif (game_field[6] == n and game_field[7] == n and game_field[8] == n):
+        button[6].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        button[7].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        button[8].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        return True
+    elif (game_field[1] == n and game_field[4] == n and game_field[7] == n):
+        button[1].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        button[4].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        button[7].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        return True
+    elif (game_field[2] == n and game_field[5] == n and game_field[8] == n):
+        button[2].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        button[5].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        button[8].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        return True
+    elif (game_field[0] == n and game_field[4] == n and game_field[8] == n):
+        button[0].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        button[4].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        button[8].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        return True
+    elif (game_field[2] == n and game_field[4] == n and game_field[6] == n):
+        button[2].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        button[4].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
+        button[6].config(text=n, bg='red', fg='black', cursor='pirate', state='disabled')
         return True
 
 def message(choice):
